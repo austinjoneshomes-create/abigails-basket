@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <title>Abigail's Basket</title>
 <style>
   html,body{margin:0;height:100%;overflow:hidden;background:#2a1d10;
@@ -21,18 +21,25 @@
     background:#EF8A4C;color:#fff;cursor:pointer}
   #abi-go:active{transform:scale(.97)}
   #abi-ov .h{opacity:.7;margin-top:14px;font-size:12px;max-width:380px;line-height:1.5}
-  #fsbtn{position:fixed;top:14px;right:14px;z-index:10;border:none;cursor:pointer;
+  #fsbtn{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));right:calc(14px + env(safe-area-inset-right,0px));z-index:10;border:none;cursor:pointer;
     background:rgba(255,255,255,.16);color:#fff;font-size:13px;font-weight:600;
     padding:8px 14px;border-radius:999px;backdrop-filter:blur(4px)}
   #fsbtn:hover{background:rgba(255,255,255,.28)}
-  #mutebtn{position:fixed;top:14px;right:120px;z-index:10;border:none;cursor:pointer;
-    background:rgba(255,255,255,.16);color:#fff;font-size:13px;font-weight:600;
-    width:36px;height:34px;border-radius:999px}
+  #mutebtn{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));right:calc(118px + env(safe-area-inset-right,0px));z-index:10;border:none;cursor:pointer;
+    background:rgba(255,255,255,.16);color:#fff;font-size:14px;font-weight:600;
+    width:38px;height:36px;border-radius:999px}
+  #abi-rotate{position:fixed;inset:0;z-index:40;display:none;flex-direction:column;align-items:center;justify-content:center;
+    background:radial-gradient(120% 120% at 50% 0%,#5a3f22 0%,#2a1d10 70%);color:#fff;text-align:center;padding:30px}
+  #abi-rotate .ic{font-size:54px;margin-bottom:16px;animation:abi-rot 2.2s ease-in-out infinite;transform-origin:center}
+  @keyframes abi-rot{0%,15%{transform:rotate(0)}50%,68%{transform:rotate(-90deg)}100%{transform:rotate(0)}}
+  @media (orientation:portrait) and (pointer:coarse) and (max-width:820px){#abi-rotate{display:flex}}
+  @media (pointer:coarse){#abi-go{padding:16px 34px;font-size:18px}#abi-cont{padding:14px 30px !important;font-size:16px !important}#fsbtn{padding:11px 18px;font-size:14px}#mutebtn{width:46px;height:44px;font-size:16px}}
 </style>
 </head>
 <body>
 <button id="fsbtn">⛶ Fullscreen</button>
 <button id="mutebtn" title="Mute">🔊</button>
+<div id="abi-rotate"><div class="ic">📱</div><div style="font-size:22px;font-weight:600">Rotate your phone</div><div style="opacity:.82;margin-top:8px;max-width:280px;font-size:15px;line-height:1.5">Abigail's Basket plays best in landscape — turn your device sideways.</div></div>
 <div id="stage">
   <div id="abi-wrap">
     <canvas id="abi-cv"></canvas>
@@ -52,8 +59,8 @@
   var ctx=cv.getContext('2d');
   var W=660,H=470,dpr=Math.min(window.devicePixelRatio||1,2);
   cv.width=W*dpr;cv.height=H*dpr;ctx.scale(dpr,dpr);
-  function fit(){var pad=24,aw=window.innerWidth-pad*2,ah=window.innerHeight-pad*2;var s=Math.min(aw/W,ah/H);cv.style.width=(W*s)+'px';cv.style.height=(H*s)+'px';}
-  window.addEventListener('resize',fit);fit();
+  function fit(){var pad=Math.min(window.innerWidth,window.innerHeight)<640?6:24;var aw=window.innerWidth-pad*2,ah=window.innerHeight-pad*2;var s=Math.min(aw/W,ah/H);cv.style.width=(W*s)+'px';cv.style.height=(H*s)+'px';}
+  window.addEventListener('resize',fit);window.addEventListener('orientationchange',function(){setTimeout(fit,120);});fit();
 
   function load(k,d){try{var v=localStorage.getItem(k);return v==null?d:JSON.parse(v);}catch(e){return d;}}
   function save(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
@@ -369,7 +376,7 @@
   cv.addEventListener('mousemove',ptr);
   cv.addEventListener('touchmove',function(e){e.preventDefault();ptr(e);},{passive:false});
   cv.addEventListener('mousedown',function(){if(G&&G.state==='chop')chopAction();});
-  cv.addEventListener('touchstart',function(e){if(G&&G.state==='chop'){e.preventDefault();chopAction();}},{passive:false});
+  cv.addEventListener('touchstart',function(e){if(!G)return;if(G.state==='chop'){e.preventDefault();chopAction();}else if(G.state==='play'){e.preventDefault();ptr(e);}},{passive:false});
   window.addEventListener('keydown',function(e){if((e.code==='Space'||e.key===' ')&&G&&G.state==='chop'){e.preventDefault();chopAction();}});
   wrap.addEventListener('click',function(){if(G&&G.state==='serve'&&G.serveT>1.4){nextAfterServe();}else if(G&&G.state==='win'){reset();}});
   function showBest(){
@@ -385,6 +392,7 @@
   document.getElementById('abi-cont').addEventListener('click',function(){begin(maxUnlocked);});
 
   var fsbtn=document.getElementById('fsbtn');
+  if(!document.documentElement.requestFullscreen&&!document.documentElement.webkitRequestFullscreen){fsbtn.style.display='none';}
   fsbtn.addEventListener('click',function(){try{if(!document.fullscreenElement){(document.documentElement.requestFullscreen||document.documentElement.webkitRequestFullscreen).call(document.documentElement);}else{(document.exitFullscreen||document.webkitExitFullscreen).call(document);}}catch(e){}});
   document.addEventListener('fullscreenchange',function(){fsbtn.textContent=document.fullscreenElement?'⛶ Exit':'⛶ Fullscreen';setTimeout(fit,60);});
   var mb=document.getElementById('mutebtn');
