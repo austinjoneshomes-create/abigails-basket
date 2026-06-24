@@ -1,0 +1,62 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { breadcrumbSchema } from '../config/schema';
+import { NAP } from '../config/site';
+
+const title = 'Listings | Homes & Investment Property in Houston & Pasadena, TX';
+const description =
+  'Current and coming-soon listings from Checkmate Real Estate across Houston and Pasadena, TX — homes, multifamily, retail, industrial, and land. Ask about off-market opportunities.';
+const crumbs = breadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Listings', url: '/listings/' },
+]);
+
+// Placeholder featured listings until live MLS/IDX feed or manual entries are added.
+const featured = [
+  { type: 'Residential', city: 'Pasadena, TX', label: 'Coming soon', tag: '3 bed · 2 bath' },
+  { type: 'Multifamily', city: 'Houston, TX', label: 'Coming soon', tag: 'Fourplex · value-add' },
+  { type: 'Industrial', city: 'Pasadena, TX', label: 'Coming soon', tag: 'Warehouse · Ship Channel' },
+];
+---
+<Base title={title} description={description} path="/listings/" schemas={[crumbs]}>
+  <PageHero
+    eyebrow="Listings"
+    title="Homes & investment property across Houston and Pasadena"
+    subtitle="Browse featured opportunities — and ask us about the off-market deals that never hit the public sites."
+  />
+
+  <section class="mx-auto max-w-6xl px-4 py-16 md:py-20">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {featured.map((l) => (
+        <article class="overflow-hidden rounded-xl border border-ink-800/10 bg-white">
+          <div class="checker-bg flex h-44 items-center justify-center bg-ink-900">
+            <span class="rounded-full bg-gold-500 px-3 py-1 text-xs font-bold uppercase tracking-wide text-ink-900">{l.label}</span>
+          </div>
+          <div class="p-6">
+            <p class="text-sm font-semibold text-gold-600">{l.type}</p>
+            <h2 class="mt-1 text-lg font-bold">{l.city}</h2>
+            <p class="mt-1 text-sm text-ink-600">{l.tag}</p>
+            <a href="/contact/" class="mt-4 inline-block text-sm font-semibold text-gold-600 hover:underline">Request details →</a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="mt-14 rounded-2xl bg-ivory-100 p-8 text-center">
+      <h2 class="font-display text-2xl font-bold text-ink-900">Looking for something specific?</h2>
+      <p class="mx-auto mt-2 max-w-xl text-ink-700">
+        Many of our best Houston and Pasadena deals — especially multifamily, retail, and
+        industrial — move off-market. Tell us what you’re hunting for and we’ll go find it.
+      </p>
+      <div class="mt-6 flex flex-wrap justify-center gap-3">
+        <a href="/contact/" class="rounded-md bg-ink-900 px-6 py-3 font-semibold text-ivory-50 hover:bg-gold-600">Set up a property search</a>
+        <a href={NAP.phoneHref} class="rounded-md border-2 border-ink-900 px-6 py-3 font-semibold text-ink-900 hover:bg-ink-900 hover:text-ivory-50">Call {NAP.phone}</a>
+      </div>
+      <p class="mt-6 text-xs text-ink-500">Listing data shown is illustrative. Live MLS/IDX listings can be integrated on request.</p>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>

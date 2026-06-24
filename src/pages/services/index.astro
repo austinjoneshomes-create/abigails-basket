@@ -1,0 +1,41 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import ChessMark from '../../components/ChessMark.astro';
+import { ASSET_TYPES } from '../../config/site';
+import { breadcrumbSchema } from '../../config/schema';
+
+const title = 'Real Estate Services by Asset Type | Houston & Pasadena, TX';
+const description =
+  'Checkmate Real Estate services across every asset type in Houston and Pasadena, TX: residential, multifamily, retail, industrial, and land. Buy, sell, and invest with an investor-led team.';
+const crumbs = breadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Services', url: '/services/' },
+]);
+---
+<Base title={title} description={description} path="/services/" schemas={[crumbs]}>
+  <PageHero
+    eyebrow="Services"
+    title="The full board of Houston real estate"
+    subtitle="One investor-led team for every asset type — from a Pasadena starter home to an industrial site on the Houston Ship Channel."
+  />
+
+  <section class="mx-auto max-w-6xl px-4 py-16 md:py-20">
+    <div class="grid gap-6 md:grid-cols-2">
+      {ASSET_TYPES.map((a) => (
+        <a href={`/services/${a.slug}/`} class="group flex gap-5 rounded-xl border border-ink-800/10 bg-white p-7 transition-shadow hover:shadow-lg">
+          <ChessMark class="h-10 w-10 shrink-0 text-gold-600" />
+          <div>
+            <h2 class="text-2xl font-bold group-hover:text-gold-600">{a.name}</h2>
+            <p class="mt-1 text-sm font-medium text-ink-600">{a.short}</p>
+            <p class="mt-3 text-ink-700">{a.blurb}</p>
+            <span class="mt-4 inline-block font-semibold text-gold-600">Learn more →</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>

@@ -1,0 +1,47 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { TEAM } from '../config/site';
+import { breadcrumbSchema } from '../config/schema';
+
+const title = 'Our Team | Checkmate Real Estate — Houston & Pasadena, TX';
+const description =
+  'Meet the Checkmate Real Estate team serving Houston and Pasadena, TX: Austin Jones (Austin from Houston), Ona, Sunnie, Caroline Kano, and Mira, Director of Marketing.';
+const crumbs = breadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Team', url: '/team/' },
+]);
+---
+<Base title={title} description={description} path="/team/" schemas={[crumbs]}>
+  <PageHero
+    eyebrow="The Team"
+    title="The players behind every winning move"
+    subtitle="A tight, Houston-rooted team that treats your goals like our own — across Pasadena and the greater Houston metro."
+  />
+
+  <section class="mx-auto max-w-6xl px-4 py-16 md:py-20">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {TEAM.map((m) => (
+        <article class="rounded-xl border border-ink-800/10 bg-white p-7 text-center">
+          <div
+            class="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-ink-900 font-display text-2xl font-bold text-gold-400"
+            aria-hidden="true"
+          >
+            {m.initials}
+          </div>
+          <h2 class="mt-4 text-xl font-bold">{m.name}</h2>
+          <p class="mt-1 text-sm font-semibold text-gold-600">{m.role}</p>
+          <p class="mt-3 text-sm text-ink-700">{m.bio}</p>
+        </article>
+      ))}
+    </div>
+
+    <p class="mx-auto mt-12 max-w-2xl text-center text-ink-700">
+      Want to put this team to work on your next move in Houston or Pasadena?
+      <a class="font-semibold text-gold-600 hover:underline" href="/contact/"> Start the conversation →</a>
+    </p>
+  </section>
+
+  <CtaBand heading="Let’s build your strategy" text="Meet the team, talk through your goals, and we’ll map the moves together." />
+</Base>

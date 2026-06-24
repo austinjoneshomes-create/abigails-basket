@@ -1,0 +1,108 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { NAP, AREAS_SERVED, BRAND } from '../config/site';
+import { breadcrumbSchema } from '../config/schema';
+
+const title = 'Contact Checkmate Real Estate | Houston & Pasadena, TX';
+const description =
+  'Contact Checkmate Real Estate and Austin Jones ("Austin from Houston") for residential, multifamily, retail, industrial, and land real estate in Houston and Pasadena, TX. Call or send a message.';
+const crumbs = breadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Contact', url: '/contact/' },
+]);
+const contactSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: 'Contact Checkmate Real Estate',
+  url: 'https://checkmaterealestate.com/contact/',
+  about: { '@id': 'https://checkmaterealestate.com/#realestateagent' },
+};
+---
+<Base title={title} description={description} path="/contact/" schemas={[crumbs, contactSchema]}>
+  <PageHero
+    eyebrow="Contact"
+    title="Let’s make your move"
+    subtitle="Buying, selling, or investing in Houston or Pasadena? Reach out — we’ll map the strategy together."
+  />
+
+  <section class="mx-auto grid max-w-6xl gap-12 px-4 py-16 md:grid-cols-2 md:py-20">
+    <!-- FORM (Netlify Forms ready) -->
+    <div>
+      <h2 class="font-display text-2xl font-bold text-ink-900">Send a message</h2>
+      <p class="mt-2 text-ink-700">Tell us about your goals and we’ll be in touch within one business day.</p>
+      <form
+        name="contact"
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        action="/contact/?sent=1"
+        class="mt-6 space-y-4"
+      >
+        <input type="hidden" name="form-name" value="contact" />
+        <p class="hidden">
+          <label>Don’t fill this out: <input name="bot-field" /></label>
+        </p>
+        <div class="grid gap-4 sm:grid-cols-2">
+          <label class="block">
+            <span class="text-sm font-semibold text-ink-800">Name</span>
+            <input required type="text" name="name" autocomplete="name" class="mt-1 w-full rounded-md border border-ink-800/20 px-3 py-2.5 focus:border-gold-500" />
+          </label>
+          <label class="block">
+            <span class="text-sm font-semibold text-ink-800">Phone</span>
+            <input type="tel" name="phone" autocomplete="tel" class="mt-1 w-full rounded-md border border-ink-800/20 px-3 py-2.5 focus:border-gold-500" />
+          </label>
+        </div>
+        <label class="block">
+          <span class="text-sm font-semibold text-ink-800">Email</span>
+          <input required type="email" name="email" autocomplete="email" class="mt-1 w-full rounded-md border border-ink-800/20 px-3 py-2.5 focus:border-gold-500" />
+        </label>
+        <label class="block">
+          <span class="text-sm font-semibold text-ink-800">I’m interested in</span>
+          <select name="interest" class="mt-1 w-full rounded-md border border-ink-800/20 bg-white px-3 py-2.5 focus:border-gold-500">
+            <option>Buying a home</option>
+            <option>Selling a home</option>
+            <option>Multifamily investing</option>
+            <option>Retail / Industrial</option>
+            <option>Land / Development</option>
+            <option>Just exploring</option>
+          </select>
+        </label>
+        <label class="block">
+          <span class="text-sm font-semibold text-ink-800">Message</span>
+          <textarea required name="message" rows="4" class="mt-1 w-full rounded-md border border-ink-800/20 px-3 py-2.5 focus:border-gold-500"></textarea>
+        </label>
+        <button type="submit" class="w-full rounded-md bg-ink-900 px-6 py-3 font-semibold text-ivory-50 transition-colors hover:bg-gold-600">
+          Send message
+        </button>
+        <p class="text-xs text-ink-500">By submitting, you agree to be contacted by {BRAND.name} about your inquiry.</p>
+      </form>
+    </div>
+
+    <!-- DETAILS / NAP -->
+    <div>
+      <h2 class="font-display text-2xl font-bold text-ink-900">Reach us directly</h2>
+      <div class="mt-6 space-y-5">
+        <div class="rounded-xl border border-ink-800/10 bg-white p-5">
+          <p class="text-sm font-semibold uppercase tracking-wide text-gold-600">Call or text</p>
+          <a href={NAP.phoneHref} class="mt-1 block text-lg font-bold text-ink-900 hover:text-gold-600">{NAP.phone}</a>
+        </div>
+        <div class="rounded-xl border border-ink-800/10 bg-white p-5">
+          <p class="text-sm font-semibold uppercase tracking-wide text-gold-600">Email</p>
+          <a href={`mailto:${NAP.email}`} class="mt-1 block text-lg font-bold text-ink-900 hover:text-gold-600">{NAP.email}</a>
+        </div>
+        <div class="rounded-xl border border-ink-800/10 bg-white p-5">
+          <p class="text-sm font-semibold uppercase tracking-wide text-gold-600">Office</p>
+          <address class="mt-1 not-italic text-ink-800">
+            {NAP.street}<br />{NAP.city}, {NAP.region} {NAP.postalCode}
+          </address>
+          <p class="mt-2 text-sm text-ink-600">Brokered by {BRAND.brokerage} · Serving the greater Houston metro.</p>
+        </div>
+        <div class="rounded-xl bg-ink-900 p-5 text-ivory-50">
+          <p class="text-sm font-semibold uppercase tracking-wide text-gold-400">Areas we serve</p>
+          <p class="mt-2 text-sm text-ivory-200">{AREAS_SERVED.map((a) => `${a}, TX`).join(' · ')}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

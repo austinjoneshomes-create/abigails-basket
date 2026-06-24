@@ -66,6 +66,44 @@ export const NAV = [
   { label: 'Contact', href: '/contact/' },
 ] as const;
 
+export const TEAM = [
+  {
+    name: 'Austin Jones',
+    slug: 'austin-jones',
+    role: 'Owner / Operator · "Austin from Houston"',
+    bio: 'Founder of Checkmate Real Estate and host of the REI 101 podcast. An investor-operator who works the full board — residential to industrial — across Houston and Pasadena.',
+    initials: 'AJ',
+  },
+  {
+    name: 'Ona',
+    slug: 'ona',
+    role: 'Real Estate Agent',
+    bio: 'Guides Houston and Pasadena buyers and sellers through every move with patience, local knowledge, and sharp follow-through.',
+    initials: 'O',
+  },
+  {
+    name: 'Sunnie',
+    slug: 'sunnie',
+    role: 'Real Estate Agent',
+    bio: 'Helps families and first-time buyers find their footing across the greater Houston market — from Deer Park to Pearland.',
+    initials: 'S',
+  },
+  {
+    name: 'Caroline Kano',
+    slug: 'caroline-kano',
+    role: 'Real Estate Agent',
+    bio: 'Brings a detail-oriented, client-first approach to residential and investment deals throughout Harris County.',
+    initials: 'CK',
+  },
+  {
+    name: 'Mira',
+    slug: 'mira',
+    role: 'Director of Marketing',
+    bio: 'Leads brand, content, and the REI 101 podcast — making sure every Checkmate listing and story reaches the right audience across Houston.',
+    initials: 'M',
+  },
+] as const;
+
 export const ASSET_TYPES = [
   {
     slug: 'residential',

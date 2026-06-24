@@ -1,0 +1,77 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { SOCIAL } from '../config/site';
+import { breadcrumbSchema } from '../config/schema';
+
+const title = 'REI 101 Podcast | Real Estate Investing with Austin from Houston';
+const description =
+  'REI 101 — the real estate investing podcast hosted by Austin Jones, "Austin from Houston" of Checkmate Real Estate. Plain-English lessons on investing in Houston and Pasadena, TX real estate.';
+const crumbs = breadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'REI 101', url: '/rei-101/' },
+]);
+const podcastSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'PodcastSeries',
+  name: 'REI 101',
+  description: 'A real estate investing podcast hosted by Austin Jones ("Austin from Houston") of Checkmate Real Estate, teaching the fundamentals of investing in Houston and Pasadena, TX real estate.',
+  url: 'https://checkmaterealestate.com/rei-101/',
+  webFeed: SOCIAL.youtube,
+  author: { '@id': 'https://checkmaterealestate.com/#austin' },
+};
+
+const topics = [
+  { t: 'Your first deal', d: 'How to analyze, finance, and close your first investment property in the Houston metro.' },
+  { t: 'Multifamily 101', d: 'Reading a rent roll, underwriting a duplex or fourplex, and avoiding rookie mistakes.' },
+  { t: 'Commercial basics', d: 'Retail, industrial, and net lease explained for everyday investors.' },
+  { t: 'Houston markets', d: 'Neighborhood-by-neighborhood breakdowns from Pasadena to Pearland.' },
+];
+---
+<Base title={title} description={description} path="/rei-101/" schemas={[crumbs, podcastSchema]}>
+  <PageHero
+    eyebrow="The Podcast"
+    title="REI 101 — real estate investing, in plain English"
+    subtitle="Hosted by Austin from Houston. Real strategies for building wealth through Houston- and Pasadena-area real estate, no jargon required."
+  />
+
+  <section class="mx-auto max-w-5xl px-4 py-16 md:py-20">
+    <div class="grid gap-10 md:grid-cols-3">
+      <div class="md:col-span-2 space-y-5 text-lg leading-relaxed text-ink-800">
+        <p>
+          <strong>REI 101</strong> is where Austin Jones breaks down real estate investing
+          for everyday people. Whether you’re eyeing your first rental in Pasadena or scaling a
+          portfolio across Houston, each episode turns intimidating concepts into clear, actionable moves.
+        </p>
+        <p>
+          It’s the same philosophy that drives Checkmate Real Estate: educate first, build trust,
+          and help our Houston-area neighbors play a smarter game.
+        </p>
+        <h2 class="font-display text-2xl font-bold text-ink-900">What you’ll learn</h2>
+        <div class="grid gap-4 sm:grid-cols-2">
+          {topics.map((t) => (
+            <div class="rounded-lg border border-ink-800/10 bg-white p-5">
+              <h3 class="font-bold text-ink-900">{t.t}</h3>
+              <p class="mt-1 text-base text-ink-700">{t.d}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <aside class="space-y-4">
+        <div class="rounded-2xl bg-ink-900 p-7 text-ivory-50">
+          <h2 class="font-display text-xl font-bold text-gold-400">Listen &amp; subscribe</h2>
+          <p class="mt-2 text-sm text-ivory-200">New episodes drop regularly. Catch them on:</p>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a class="block rounded-md border border-ivory-200/30 px-4 py-2.5 font-semibold hover:border-gold-400 hover:text-gold-400" href={SOCIAL.youtube}>YouTube</a></li>
+            <li><a class="block rounded-md border border-ivory-200/30 px-4 py-2.5 font-semibold hover:border-gold-400 hover:text-gold-400" href={SOCIAL.instagram}>Instagram clips</a></li>
+          </ul>
+          <p class="mt-4 text-xs text-ivory-300">Streaming links (Apple Podcasts, Spotify) can be added once feeds are live.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <CtaBand heading="Ready to go from listener to investor?" text="Austin and the Checkmate team will help you put REI 101 into practice in the Houston market." />
+</Base>

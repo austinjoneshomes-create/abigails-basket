@@ -1,0 +1,74 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { BRAND } from '../config/site';
+import { breadcrumbSchema } from '../config/schema';
+
+const title = 'About Checkmate Real Estate | Austin Jones, Houston & Pasadena TX';
+const description =
+  'The story of Checkmate Real Estate and founder Austin Jones — "Austin from Houston." A chess-minded, investor-led real estate team serving Houston and Pasadena, TX, brokered by Keller Williams.';
+const crumbs = breadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'About', url: '/about/' },
+]);
+---
+<Base title={title} description={description} path="/about/" schemas={[crumbs]}>
+  <PageHero
+    eyebrow="Our Story"
+    title="Real estate is a game of strategy. We play to win for you."
+    subtitle="How a Houston operator built a chess-minded real estate team for Pasadena and the greater Houston metro."
+  />
+
+  <article class="mx-auto max-w-3xl px-4 py-16 md:py-20">
+    <div class="space-y-6 text-lg leading-relaxed text-ink-800">
+      <h2 class="font-display text-2xl font-bold text-ink-900">From Houston, for Houston</h2>
+      <p>
+        Checkmate Real Estate was founded on a simple idea: the best real estate outcomes
+        don’t happen by luck — they happen by strategy. Founder <strong>Austin Jones</strong>,
+        known across the city as <strong>“Austin from Houston,”</strong> built the firm to bring
+        an investor’s discipline to every client, whether they’re buying a first home in
+        Pasadena or assembling a multifamily portfolio across the Houston metro.
+      </p>
+      <p>
+        The chess theme isn’t a gimmick. It’s how we think. Every transaction is a board with
+        pieces in motion — pricing, timing, financing, negotiation, and risk. Our job is to
+        see the whole board, think several moves ahead, and put you in a winning position before
+        the other side even realizes the game has started.
+      </p>
+
+      <h2 class="font-display text-2xl font-bold text-ink-900">An operator’s advantage</h2>
+      <p>
+        Because Austin is an active investor and operator, Checkmate works the full board of
+        real estate — residential, multifamily, retail, industrial, and land. That range means
+        we can underwrite an investment the way a buyer should, position a listing the way a
+        seller needs, and connect the dots between asset classes that single-lane agents miss.
+      </p>
+      <p>
+        We’re proud to be brokered by <strong>{BRAND.brokerage}</strong>, pairing local,
+        boots-on-the-ground knowledge of Houston and Pasadena with the resources of one of the
+        largest real estate organizations in the world.
+      </p>
+
+      <h2 class="font-display text-2xl font-bold text-ink-900">More than transactions</h2>
+      <p>
+        Austin also hosts <a class="font-semibold text-gold-600 hover:underline" href="/rei-101/">REI 101</a>,
+        a podcast that breaks down real estate investing for everyday people in plain language.
+        It’s the same philosophy that drives the firm: educate first, build trust, and help our
+        Houston-area neighbors make confident moves.
+      </p>
+      <blockquote class="border-l-4 border-gold-500 pl-5 font-display text-xl italic text-ink-900">
+        “In chess and in real estate, the player who thinks three moves ahead wins. Our job is to
+        do that thinking for you.”
+        <footer class="mt-2 text-base not-italic text-ink-600">— Austin Jones, Austin from Houston</footer>
+      </blockquote>
+    </div>
+
+    <div class="mt-10 flex flex-wrap gap-3">
+      <a href="/austin-from-houston/" class="rounded-md bg-ink-900 px-6 py-3 font-semibold text-ivory-50 hover:bg-gold-600">Meet Austin from Houston</a>
+      <a href="/team/" class="rounded-md border-2 border-ink-900 px-6 py-3 font-semibold text-ink-900 hover:bg-ink-900 hover:text-ivory-50">Meet the team</a>
+    </div>
+  </article>
+
+  <CtaBand />
+</Base>

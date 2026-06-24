@@ -1,0 +1,129 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { ASSET_TYPES } from '../../config/site';
+import { breadcrumbSchema } from '../../config/schema';
+
+export function getStaticPaths() {
+  return ASSET_TYPES.map((a) => ({ params: { slug: a.slug }, props: { asset: a } }));
+}
+
+const { asset } = Astro.props;
+
+// Per-asset detail content. Keeps each service page unique and keyword-targeted.
+const DETAIL: Record<string, {
+  h1: string; metaTitle: string; metaDesc: string; intro: string;
+  points: { t: string; d: string }[]; audience: string;
+}> = {
+  residential: {
+    h1: 'Residential Real Estate in Houston & Pasadena, TX',
+    metaTitle: 'Houston & Pasadena Residential Real Estate Agent | Checkmate Real Estate',
+    metaDesc: 'Buy or sell a home in Houston and Pasadena, TX with Checkmate Real Estate. Investor-led representation for homeowners and first-time buyers across Harris County.',
+    intro: 'Buying or selling a home is the biggest move most people make. We bring an investor’s eye and a neighbor’s honesty to every Houston and Pasadena residential transaction.',
+    points: [
+      { t: 'Buyers', d: 'First-time buyers to move-up families — we find the right home in the right Houston-area neighborhood and negotiate hard on price and terms.' },
+      { t: 'Sellers', d: 'Data-driven pricing, sharp staging guidance, and marketing that gets your Pasadena or Houston home in front of the right buyers fast.' },
+      { t: 'Relocation', d: 'Moving to the Houston metro? We know the commutes, schools, and submarkets from the Heights to Deer Park.' },
+    ],
+    audience: 'Homeowners, first-time buyers, and families across Houston, Pasadena, and Harris County.',
+  },
+  multifamily: {
+    h1: 'Multifamily Real Estate in the Houston Metro',
+    metaTitle: 'Houston Multifamily Real Estate & Investment | Checkmate Real Estate',
+    metaDesc: 'Multifamily real estate across Houston and Pasadena, TX — duplexes, fourplexes, and apartment communities underwritten by an investor-led team.',
+    intro: 'From your first duplex to a stabilized apartment community, we underwrite Houston multifamily deals like the investors we are — because we are.',
+    points: [
+      { t: 'Acquisitions', d: 'Off-market sourcing, rent-roll analysis, and disciplined underwriting across the Houston metro.' },
+      { t: 'Dispositions', d: 'Position and market your multifamily asset to maximize value and minimize days on market.' },
+      { t: 'Investor strategy', d: 'Cash flow, value-add, and 1031 exchange planning tailored to your goals.' },
+    ],
+    audience: 'New and experienced investors building rental and apartment portfolios in Houston and Pasadena.',
+  },
+  retail: {
+    h1: 'Retail Real Estate in Houston & Pasadena, TX',
+    metaTitle: 'Houston Retail Real Estate — Strip Centers & Storefronts | Checkmate Real Estate',
+    metaDesc: 'Retail real estate along Houston and Pasadena, TX corridors — strip centers, pad sites, and single-tenant net-lease investments.',
+    intro: 'Retail is about location, traffic, and tenant quality. We help investors and business owners win on all three across the Houston market.',
+    points: [
+      { t: 'Strip centers', d: 'Multi-tenant retail along high-traffic Houston and Pasadena corridors.' },
+      { t: 'Net lease', d: 'Single-tenant, net-lease investments for stable, passive income.' },
+      { t: 'Pad sites & leasing', d: 'Pad development opportunities and tenant/landlord representation.' },
+    ],
+    audience: 'Retail investors, business owners, and developers across the greater Houston area.',
+  },
+  industrial: {
+    h1: 'Industrial Real Estate on the Houston Ship Channel & Gulf Coast',
+    metaTitle: 'Houston Industrial Real Estate — Warehouse & Flex | Checkmate Real Estate',
+    metaDesc: 'Industrial real estate serving the Port of Houston, Ship Channel, and Gulf Coast — warehouse, flex, and distribution space in Houston and Pasadena, TX.',
+    intro: 'Pasadena and the Houston Ship Channel are one of the most active industrial markets in the country. We help you stake your claim.',
+    points: [
+      { t: 'Warehouse & distribution', d: 'Space serving the Port of Houston, Ship Channel, and Gulf Coast logistics.' },
+      { t: 'Flex space', d: 'Office/warehouse flex for growing operators across the Houston metro.' },
+      { t: 'Owner-user & investment', d: 'Buy to occupy or buy to lease — we underwrite both sides.' },
+    ],
+    audience: 'Operators, logistics companies, and industrial investors in Pasadena and Houston.',
+  },
+  land: {
+    h1: 'Land for Sale & Development in the Houston Region',
+    metaTitle: 'Houston Land for Sale & Development | Checkmate Real Estate',
+    metaDesc: 'Land in Houston and Pasadena, TX — infill lots, raw acreage, and development sites across Harris County and the greater Houston region.',
+    intro: 'Whether you’re building one home or planning a subdivision, the right piece of land is the opening move. We help you find it and run the numbers.',
+    points: [
+      { t: 'Infill lots', d: 'Buildable lots in established Houston and Pasadena neighborhoods.' },
+      { t: 'Acreage', d: 'Raw and improved acreage across Harris County and surrounding counties.' },
+      { t: 'Development sites', d: 'Entitlement, feasibility, and disposition strategy for developers.' },
+    ],
+    audience: 'Builders, developers, and investors acquiring land across the Houston region.',
+  },
+};
+
+const d = DETAIL[asset.slug];
+const crumbs = breadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Services', url: '/services/' },
+  { name: asset.name, url: `/services/${asset.slug}/` },
+]);
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: `${asset.name} Real Estate`,
+  serviceType: `${asset.name} real estate`,
+  areaServed: 'Houston, Pasadena, TX',
+  provider: { '@id': 'https://checkmaterealestate.com/#realestateagent' },
+  description: d.metaDesc,
+};
+---
+<Base title={d.metaTitle} description={d.metaDesc} path={`/services/${asset.slug}/`} schemas={[crumbs, serviceSchema]}>
+  <PageHero eyebrow="Services" title={d.h1} subtitle={d.intro} />
+
+  <section class="mx-auto max-w-5xl px-4 py-16 md:py-20">
+    <div class="grid gap-6 md:grid-cols-3">
+      {d.points.map((p) => (
+        <div class="rounded-xl border border-ink-800/10 bg-white p-6">
+          <h2 class="text-lg font-bold text-ink-900">{p.t}</h2>
+          <p class="mt-2 text-ink-700">{p.d}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-12 rounded-2xl bg-ivory-100 p-8">
+      <h2 class="font-display text-xl font-bold text-ink-900">Who we help</h2>
+      <p class="mt-2 text-ink-800">{d.audience}</p>
+      <a href="/contact/" class="mt-5 inline-block rounded-md bg-ink-900 px-6 py-3 font-semibold text-ivory-50 hover:bg-gold-600">
+        Talk {asset.name.toLowerCase()} strategy
+      </a>
+    </div>
+
+    <nav class="mt-12 border-t border-ink-800/10 pt-8" aria-label="Other services">
+      <p class="mb-3 text-sm font-semibold uppercase tracking-wide text-ink-600">Explore other asset types</p>
+      <div class="flex flex-wrap gap-3">
+        {ASSET_TYPES.filter((a) => a.slug !== asset.slug).map((a) => (
+          <a href={`/services/${a.slug}/`} class="rounded-full border border-ink-800/15 px-4 py-2 text-sm font-medium text-ink-700 hover:border-gold-500 hover:text-gold-600">{a.name}</a>
+        ))}
+      </div>
+    </nav>
+  </section>
+
+  <CtaBand />
+</Base>
