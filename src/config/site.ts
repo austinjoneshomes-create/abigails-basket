@@ -23,6 +23,9 @@ export const BRAND = {
 export const NAP = {
   phone: '(281) 942-6576',
   phoneHref: 'tel:+12819426576',
+  // Austin's direct line — used on his personal /austin-from-houston page.
+  directPhone: '(281) 729-6604',
+  directPhoneHref: 'tel:+12817296604',
   email: 'Austin@CheckMateRE.com',
   emailHref: 'austin@checkmatere.com',
   street: '711 Milby St, Suite 100',
