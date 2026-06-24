@@ -44,6 +44,8 @@ public/           # favicon.svg, logo.png, og-default.png, robots.txt
 - Houston/Pasadena location signals across copy, headings, alt text, and footer NAP.
 
 ## Deploy
+👉 **Full step-by-step (incl. pointing `checkmatere.com` DNS without breaking Gmail): [DEPLOY.md](./DEPLOY.md)**
+
 **Netlify:** connect repo → settings auto-read from `netlify.toml` (build `npm run build`, publish `dist`).
 The Contact form is wired for **Netlify Forms** (`data-netlify`).
 

@@ -41,7 +41,8 @@ const year = 2026;
       <ul class="mb-5 space-y-1 text-sm text-ivory-200">
         {AREAS_SERVED.slice(0, 6).map((a) => <li>{a}, TX</li>)}
       </ul>
-      <div class="flex gap-3">
+      <div class="flex flex-wrap gap-3">
+        <a class="text-ivory-200 hover:text-gold-300" href={SOCIAL.facebook} aria-label="Facebook">Facebook</a>
         <a class="text-ivory-200 hover:text-gold-300" href={SOCIAL.instagram} aria-label="Instagram">Instagram</a>
         <a class="text-ivory-200 hover:text-gold-300" href={SOCIAL.youtube} aria-label="YouTube">YouTube</a>
       </div>

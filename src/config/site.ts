@@ -21,8 +21,8 @@ export const BRAND = {
 // NAP (Name / Address / Phone) — sourced from Austin's email signature.
 // Must match Google Business Profile, KW listing, and all citations exactly.
 export const NAP = {
-  phone: '(281) 729-6604',
-  phoneHref: 'tel:+12817296604',
+  phone: '(281) 942-6576',
+  phoneHref: 'tel:+12819426576',
   email: 'Austin@CheckMateRE.com',
   emailHref: 'austin@checkmatere.com',
   street: '711 Milby St, Suite 100',
@@ -49,8 +49,8 @@ export const AREAS_SERVED = [
 ] as const;
 
 export const SOCIAL = {
-  // TODO(owner): confirm/replace social URLs
-  facebook: 'https://www.facebook.com/checkmaterealestate',
+  facebook: 'https://www.facebook.com/checkmaterealestategroup',
+  // TODO(owner): confirm real Instagram / YouTube / LinkedIn handles
   instagram: 'https://www.instagram.com/austinfromhouston',
   youtube: 'https://www.youtube.com/@rei101',
   linkedin: 'https://www.linkedin.com/in/austinfromhouston',
