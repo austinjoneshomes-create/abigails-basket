@@ -59,16 +59,18 @@ Stack: **Astro (static output) + Tailwind CSS** · `@astrojs/sitemap` · JSON-LD
 
 ---
 
-## Decisions Needed From Owner (placeholders in use until provided)
-- [ ] Real **NAP**: business phone, public email, street/office address (KW Pasadena office?). Currently placeholders in `src/config/site.ts`.
-- [ ] Production **domain** (assumed `https://checkmaterealestate.com`). Update `astro.config.mjs` `site` if different.
+## Decisions Needed From Owner (status)
+- [x] Real **NAP** — (281) 729-6604 · Austin@CheckMateRE.com · 711 Milby St, Suite 100, Houston, TX 77023 (from email signature).
+- [x] Production **domain** — `https://checkmatere.com` (Google Workspace).
+- [x] License # / KW office — Lic. #9009288, Keller Williams Houston Central.
 - [ ] Real **photos** (Austin, team, listings). Currently chess-themed SVG/initials placeholders.
-- [ ] License #, KW office/MLS details for compliance footer.
-- [ ] Analytics choice (GA4 vs Plausible/Fathom) + REI 101 podcast feed URL.
+- [ ] Confirm real **social + REI 101 podcast URLs** (best-guess placeholders in `src/config/site.ts`).
+- [ ] Analytics decision (GA4 default) — see OFF-SITE-SEO.md §3.
 
 ## Change Log
 - Init: PLAN.md created; stack chosen (Astro + Tailwind).
 - Foundation: Astro+Tailwind scaffold, design tokens, Header/Footer/SEO/schema components, site config, homepage.
 - Pages: About, austin-from-houston (FAQ schema), Team, Services index + 5 asset-type pages, Listings, REI 101, Contact, 404.
 - SEO/Deploy: sitemap+robots+OG verified; netlify.toml/vercel.json; OFF-SITE-SEO.md; README. Build clean, 14 pages, 0 JS.
-- **Status: all acceptance boxes checked. Remaining items are owner-input placeholders, not build tasks.**
+- Real data: domain → checkmatere.com; NAP, KW Houston Central + Lic. #9009288 wired from email signature into config, footer, contact, and JSON-LD.
+- **Status: all acceptance boxes checked. Remaining items are photos + social/podcast URL confirmation.**

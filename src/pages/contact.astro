@@ -15,8 +15,8 @@ const contactSchema = {
   '@context': 'https://schema.org',
   '@type': 'ContactPage',
   name: 'Contact Checkmate Real Estate',
-  url: 'https://checkmaterealestate.com/contact/',
-  about: { '@id': 'https://checkmaterealestate.com/#realestateagent' },
+  url: 'https://checkmatere.com/contact/',
+  about: { '@id': 'https://checkmatere.com/#realestateagent' },
 };
 ---
 <Base title={title} description={description} path="/contact/" schemas={[crumbs, contactSchema]}>
@@ -96,7 +96,7 @@ const contactSchema = {
           <address class="mt-1 not-italic text-ink-800">
             {NAP.street}<br />{NAP.city}, {NAP.region} {NAP.postalCode}
           </address>
-          <p class="mt-2 text-sm text-ink-600">Brokered by {BRAND.brokerage} · Serving the greater Houston metro.</p>
+          <p class="mt-2 text-sm text-ink-600">{BRAND.brokerageOffice} · Lic. #{BRAND.licenseNumber} · Serving the greater Houston metro.</p>
         </div>
         <div class="rounded-xl bg-ink-900 p-5 text-ivory-50">
           <p class="text-sm font-semibold uppercase tracking-wide text-gold-400">Areas we serve</p>

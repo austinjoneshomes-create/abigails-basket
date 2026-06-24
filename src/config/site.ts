@@ -4,35 +4,36 @@
  * owner provides real phone / email / address.
  */
 
-export const SITE_URL = 'https://checkmaterealestate.com';
+export const SITE_URL = 'https://checkmatere.com';
 
 export const BRAND = {
   name: 'Checkmate Real Estate',
-  legalName: 'Checkmate Real Estate',
+  legalName: 'Checkmate Real Estate Group',
   tagline: 'Your Move in Houston Real Estate',
   owner: 'Austin Jones',
   ownerNickname: 'Austin from Houston',
   brokerage: 'Keller Williams',
+  brokerageOffice: 'Keller Williams Houston Central',
+  licenseNumber: '9009288',
   founded: '2019',
 } as const;
 
-// NAP (Name / Address / Phone) — PLACEHOLDERS. Must match Google Business
-// Profile, KW listing, and all citations exactly. Owner to confirm.
+// NAP (Name / Address / Phone) — sourced from Austin's email signature.
+// Must match Google Business Profile, KW listing, and all citations exactly.
 export const NAP = {
-  // TODO(owner): confirm public-facing phone
-  phone: '(713) 555-0142',
-  phoneHref: 'tel:+17135550142',
-  // TODO(owner): confirm public email
-  email: 'austin@checkmaterealestate.com',
-  // TODO(owner): confirm office address (Keller Williams Pasadena office?)
-  street: '5050 Fairmont Pkwy, Suite 100',
-  city: 'Pasadena',
+  phone: '(281) 729-6604',
+  phoneHref: 'tel:+12817296604',
+  email: 'Austin@CheckMateRE.com',
+  emailHref: 'austin@checkmatere.com',
+  street: '711 Milby St, Suite 100',
+  city: 'Houston',
   region: 'TX',
   regionName: 'Texas',
-  postalCode: '77505',
+  postalCode: '77023',
   country: 'US',
-  latitude: 29.6585,
-  longitude: -95.1499,
+  // Approx. coordinates for 711 Milby St (Houston East End) — refine if needed.
+  latitude: 29.7404,
+  longitude: -95.3478,
 } as const;
 
 export const AREAS_SERVED = [

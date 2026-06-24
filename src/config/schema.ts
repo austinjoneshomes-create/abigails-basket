@@ -48,7 +48,7 @@ export function realEstateAgentSchema() {
     employee: { '@id': PERSON_ID },
     parentOrganization: {
       '@type': 'Organization',
-      name: BRAND.brokerage,
+      name: BRAND.brokerageOffice,
     },
     sameAs: Object.values(SOCIAL),
     openingHoursSpecification: [
@@ -70,7 +70,7 @@ export function personSchema() {
     alternateName: BRAND.ownerNickname,
     jobTitle: 'Real Estate Agent & Investor',
     description: `${BRAND.owner}, known as "${BRAND.ownerNickname}," is the owner/operator of ${BRAND.name}, serving Houston and Pasadena, TX across residential, multifamily, retail, industrial, and land.`,
-    image: `${SITE_URL}/team/austin-jones.svg`,
+    image: `${SITE_URL}/og-default.png`,
     url: `${SITE_URL}/austin-from-houston/`,
     worksFor: { '@id': ORG_ID },
     homeLocation: {
