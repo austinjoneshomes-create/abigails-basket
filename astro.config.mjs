@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // Production domain — update here if the live domain differs.
 // Drives canonical URLs, sitemap.xml, and Open Graph absolute URLs.
-const SITE = 'https://checkmatere.com';
+const SITE = 'https://www.checkmatere.com';
 
 export default defineConfig({
   site: SITE,

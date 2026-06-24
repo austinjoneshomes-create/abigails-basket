@@ -4,7 +4,7 @@
  * owner provides real phone / email / address.
  */
 
-export const SITE_URL = 'https://checkmatere.com';
+export const SITE_URL = 'https://www.checkmatere.com';
 
 export const BRAND = {
   name: 'Checkmate Real Estate',

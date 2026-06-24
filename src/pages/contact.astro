@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
-import { NAP, AREAS_SERVED, BRAND } from '../config/site';
+import { NAP, AREAS_SERVED, BRAND, SITE_URL } from '../config/site';
 import { breadcrumbSchema } from '../config/schema';
 
 const title = 'Contact Checkmate Real Estate | Houston & Pasadena, TX';
@@ -15,8 +15,8 @@ const contactSchema = {
   '@context': 'https://schema.org',
   '@type': 'ContactPage',
   name: 'Contact Checkmate Real Estate',
-  url: 'https://checkmatere.com/contact/',
-  about: { '@id': 'https://checkmatere.com/#realestateagent' },
+  url: `${SITE_URL}/contact/`,
+  about: { '@id': `${SITE_URL}/#realestateagent` },
 };
 ---
 <Base title={title} description={description} path="/contact/" schemas={[crumbs, contactSchema]}>

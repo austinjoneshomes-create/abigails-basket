@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://checkmatere.com/sitemap-index.xml
+Sitemap: https://www.checkmatere.com/sitemap-index.xml
