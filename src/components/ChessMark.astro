@@ -1,0 +1,16 @@
+---
+/** Brand mark: a stylized knight (chess) in currentColor. Inline = zero requests. */
+interface Props { class?: string }
+const { class: className = '' } = Astro.props;
+---
+<svg
+  class={className}
+  viewBox="0 0 64 64"
+  fill="currentColor"
+  role="img"
+  aria-label="Checkmate Real Estate knight emblem"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path d="M20 54h26c1 0 1.6-.8 1.4-1.8C45.2 41 44 38 44 32c0-9-4-15-11-18 .7-1.7.6-3.6-.6-5.2-.6-.8-1.9-.6-2.2.3l-.9 2.4-3.6-1.4c-1-.4-2 .6-1.6 1.6l1.2 3C19.6 18 14 24 14 34c0 4-1 7-3 9.6-.7.9-.3 2.2.8 2.4 2.4.5 4.7 1.5 4.7 4V52c0 1.1.9 2 2 2h1.5zM27 21a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/>
+  <rect x="16" y="56" width="32" height="5" rx="1.5"/>
+</svg>

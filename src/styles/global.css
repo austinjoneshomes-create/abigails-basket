@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Checkmate Real Estate — design tokens (chess-themed)
+   Clean, premium, high-contrast. Ivory + ink + gold accent.
+   ============================================================ */
+@theme {
+  --color-ink-950: #0b0c0f;
+  --color-ink-900: #111318;
+  --color-ink-800: #1a1d24;
+  --color-ink-700: #272b34;
+  --color-ink-600: #3a3f4b;
+
+  --color-ivory-50: #faf8f1;
+  --color-ivory-100: #f4efe2;
+  --color-ivory-200: #e8e0cb;
+
+  --color-gold-300: #e2c97e;
+  --color-gold-400: #d4b35e;
+  --color-gold-500: #c8a24b;
+  --color-gold-600: #a8853a;
+
+  --color-board-light: #efe8d6;
+  --color-board-dark: #2a2e38;
+
+  --font-display: "Georgia", "Times New Roman", serif;
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-ivory-50);
+  color: var(--color-ink-900);
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+/* Subtle checkerboard texture utility for hero / section accents */
+.checker-bg {
+  background-image:
+    linear-gradient(45deg, color-mix(in srgb, var(--color-gold-500) 8%, transparent) 25%, transparent 25%),
+    linear-gradient(-45deg, color-mix(in srgb, var(--color-gold-500) 8%, transparent) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, color-mix(in srgb, var(--color-gold-500) 8%, transparent) 75%),
+    linear-gradient(-45deg, transparent 75%, color-mix(in srgb, var(--color-gold-500) 8%, transparent) 75%);
+  background-size: 48px 48px;
+  background-position: 0 0, 0 24px, 24px -24px, -24px 0;
+}
+
+/* Accessible focus ring */
+:where(a, button, input, textarea, select):focus-visible {
+  outline: 3px solid var(--color-gold-500);
+  outline-offset: 2px;
+}

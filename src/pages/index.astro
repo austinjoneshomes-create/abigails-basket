@@ -1,0 +1,127 @@
+---
+import Base from '../layouts/Base.astro';
+import CtaBand from '../components/CtaBand.astro';
+import ChessMark from '../components/ChessMark.astro';
+import { BRAND, ASSET_TYPES, AREAS_SERVED } from '../config/site';
+
+const title = 'Checkmate Real Estate | Houston & Pasadena, TX Real Estate';
+const description =
+  'Checkmate Real Estate — Houston and Pasadena, TX real estate led by Austin Jones, "Austin from Houston." Residential, multifamily, retail, industrial, and land. Brokered by Keller Williams.';
+
+const plays = [
+  { n: '01', t: 'Open strong', d: 'A free strategy session where we map your goals, timeline, and the Houston-area submarkets that fit.' },
+  { n: '02', t: 'Control the board', d: 'Data-driven pricing, sharp negotiation, and an investor’s eye on every Pasadena and Houston deal.' },
+  { n: '03', t: 'Checkmate', d: 'We close decisively — protecting your equity, your timeline, and your next move.' },
+];
+---
+<Base title={title} description={description} path="/">
+  <!-- HERO -->
+  <section class="checker-bg bg-ink-900 text-ivory-50">
+    <div class="mx-auto grid max-w-6xl items-center gap-10 px-4 py-20 md:grid-cols-2 md:py-28">
+      <div>
+        <p class="mb-4 inline-flex items-center gap-2 rounded-full border border-gold-500/40 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-gold-300">
+          <ChessMark class="h-4 w-4" /> Houston · Pasadena, TX
+        </p>
+        <h1 class="text-4xl font-bold leading-[1.05] md:text-6xl">
+          Your move in <span class="text-gold-400">Houston</span> real estate.
+        </h1>
+        <p class="mt-5 max-w-xl text-lg text-ivory-200">
+          Checkmate Real Estate helps buyers, sellers, and investors win across the
+          greater Houston and Pasadena market — residential, multifamily, retail,
+          industrial, and land. Led by Austin Jones, <strong class="text-ivory-50">“Austin from Houston,”</strong>
+          brokered by {BRAND.brokerage}.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/contact/" class="rounded-md bg-gold-500 px-6 py-3 font-semibold text-ink-900 transition-colors hover:bg-gold-400">
+            Make your move
+          </a>
+          <a href="/listings/" class="rounded-md border border-ivory-200/30 px-6 py-3 font-semibold text-ivory-50 transition-colors hover:border-gold-400 hover:text-gold-400">
+            View listings
+          </a>
+        </div>
+      </div>
+      <div class="hidden md:block">
+        <div class="rounded-2xl border border-gold-500/20 bg-ink-800/60 p-8">
+          <div class="grid grid-cols-3 gap-4 text-center">
+            <div><p class="font-display text-4xl font-bold text-gold-400">5</p><p class="mt-1 text-sm text-ivory-200">Asset classes</p></div>
+            <div><p class="font-display text-4xl font-bold text-gold-400">2</p><p class="mt-1 text-sm text-ivory-200">Home markets</p></div>
+            <div><p class="font-display text-4xl font-bold text-gold-400">KW</p><p class="mt-1 text-sm text-ivory-200">Brokered by</p></div>
+          </div>
+          <p class="mt-6 border-t border-ink-700 pt-6 text-center text-sm text-ivory-200">
+            “In chess and in real estate, the player who thinks three moves ahead wins.”
+          </p>
+          <p class="mt-2 text-center text-sm font-semibold text-gold-300">— Austin from Houston</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ASSET TYPES -->
+  <section class="mx-auto max-w-6xl px-4 py-16 md:py-20">
+    <div class="mb-10 max-w-2xl">
+      <h2 class="text-3xl font-bold md:text-4xl">Every piece on the board</h2>
+      <p class="mt-3 text-ink-700">
+        From a starter home in Pasadena to an industrial site on the Houston Ship Channel,
+        we work the full board of Gulf Coast real estate.
+      </p>
+    </div>
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {ASSET_TYPES.map((a) => (
+        <a href={`/services/${a.slug}/`} class="group rounded-xl border border-ink-800/10 bg-white p-6 transition-shadow hover:shadow-lg">
+          <ChessMark class="h-8 w-8 text-gold-600" />
+          <h3 class="mt-4 text-xl font-bold group-hover:text-gold-600">{a.name}</h3>
+          <p class="mt-1 text-sm font-medium text-ink-600">{a.short}</p>
+          <p class="mt-3 text-sm text-ink-700">{a.blurb}</p>
+          <span class="mt-4 inline-block text-sm font-semibold text-gold-600">Explore {a.name.toLowerCase()} →</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- STRATEGY / 3 MOVES -->
+  <section class="bg-ivory-100">
+    <div class="mx-auto max-w-6xl px-4 py-16 md:py-20">
+      <h2 class="mb-10 text-3xl font-bold md:text-4xl">A winning game in three moves</h2>
+      <div class="grid gap-6 md:grid-cols-3">
+        {plays.map((p) => (
+          <div class="rounded-xl border border-ink-800/10 bg-white p-7">
+            <span class="font-display text-3xl font-bold text-gold-500">{p.n}</span>
+            <h3 class="mt-2 text-xl font-bold">{p.t}</h3>
+            <p class="mt-2 text-ink-700">{p.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY AUSTIN -->
+  <section class="mx-auto max-w-6xl px-4 py-16 md:py-20">
+    <div class="grid gap-10 md:grid-cols-2 md:items-center">
+      <div>
+        <h2 class="text-3xl font-bold md:text-4xl">Why Austin from Houston</h2>
+        <p class="mt-4 text-ink-700">
+          Austin Jones isn’t just an agent — he’s an operator and investor who lives and
+          works in the Houston metro. That investor’s lens means sharper underwriting for
+          buyers, smarter positioning for sellers, and real strategy for everyone in between.
+        </p>
+        <ul class="mt-6 space-y-3 text-ink-800">
+          <li class="flex gap-3"><span class="text-gold-600">♚</span> Houston &amp; Pasadena market specialist</li>
+          <li class="flex gap-3"><span class="text-gold-600">♛</span> Residential to commercial — one trusted team</li>
+          <li class="flex gap-3"><span class="text-gold-600">♜</span> Host of the <a class="font-semibold text-gold-600 hover:underline" href="/rei-101/">REI 101</a> real estate podcast</li>
+          <li class="flex gap-3"><span class="text-gold-600">♞</span> Brokered by Keller Williams</li>
+        </ul>
+        <a href="/austin-from-houston/" class="mt-7 inline-block rounded-md bg-ink-900 px-6 py-3 font-semibold text-ivory-50 transition-colors hover:bg-gold-600">
+          Meet Austin from Houston
+        </a>
+      </div>
+      <div class="rounded-2xl bg-ink-900 p-8 text-ivory-50">
+        <h3 class="text-xl font-bold text-gold-400">Serving the greater Houston area</h3>
+        <ul class="mt-4 grid grid-cols-2 gap-2 text-sm text-ivory-200">
+          {AREAS_SERVED.map((a) => <li class="flex gap-2"><span class="text-gold-500">▸</span>{a}, TX</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>

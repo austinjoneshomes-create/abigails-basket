@@ -1,0 +1,60 @@
+---
+import { BRAND, NAP, NAV, SOCIAL, AREAS_SERVED } from '../config/site';
+import ChessMark from './ChessMark.astro';
+const year = 2026;
+---
+<footer class="mt-20 border-t border-ink-800 bg-ink-900 text-ivory-100">
+  <div class="mx-auto grid max-w-6xl gap-10 px-4 py-12 md:grid-cols-4">
+    <!-- Brand + NAP (machine + human readable) -->
+    <div class="md:col-span-2">
+      <a href="/" class="mb-3 flex items-center gap-2.5 text-ivory-50" aria-label={`${BRAND.name} home`}>
+        <ChessMark class="h-8 w-8 text-gold-400" />
+        <span class="font-display text-lg font-bold">Checkmate Real Estate</span>
+      </a>
+      <p class="mb-4 max-w-sm text-sm text-ivory-200">
+        Houston &amp; Pasadena, TX real estate — residential, multifamily, retail, industrial,
+        and land. Led by Austin Jones, "Austin from Houston," brokered by {BRAND.brokerage}.
+      </p>
+
+      <address class="not-italic text-sm leading-relaxed text-ivory-200">
+        <span class="block font-semibold text-ivory-50">Checkmate Real Estate</span>
+        <span class="block">{NAP.street}</span>
+        <span class="block">{NAP.city}, {NAP.region} {NAP.postalCode}</span>
+        <a class="mt-1 block hover:text-gold-300" href={NAP.phoneHref}>{NAP.phone}</a>
+        <a class="block hover:text-gold-300" href={`mailto:${NAP.email}`}>{NAP.email}</a>
+      </address>
+    </div>
+
+    <!-- Explore -->
+    <nav aria-label="Footer">
+      <h2 class="mb-3 text-sm font-semibold uppercase tracking-wide text-gold-400">Explore</h2>
+      <ul class="space-y-2 text-sm">
+        {NAV.map((item) => (
+          <li><a class="text-ivory-200 hover:text-gold-300" href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- Areas + social -->
+    <div>
+      <h2 class="mb-3 text-sm font-semibold uppercase tracking-wide text-gold-400">Areas We Serve</h2>
+      <ul class="mb-5 space-y-1 text-sm text-ivory-200">
+        {AREAS_SERVED.slice(0, 6).map((a) => <li>{a}, TX</li>)}
+      </ul>
+      <div class="flex gap-3">
+        <a class="text-ivory-200 hover:text-gold-300" href={SOCIAL.instagram} aria-label="Instagram">Instagram</a>
+        <a class="text-ivory-200 hover:text-gold-300" href={SOCIAL.youtube} aria-label="YouTube">YouTube</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-t border-ink-800">
+    <div class="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-5 text-xs text-ivory-200 md:flex-row md:items-center md:justify-between">
+      <p>© {year} Checkmate Real Estate. All rights reserved. Each office independently owned and operated.</p>
+      <p>
+        Austin Jones · Licensed Real Estate Agent (TX) · Brokered by {BRAND.brokerage}.
+        Equal Housing Opportunity.
+      </p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,58 @@
+---
+import { NAV, BRAND, NAP } from '../config/site';
+import ChessMark from './ChessMark.astro';
+
+const current = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === '/' ? current === '/' : current.startsWith(href);
+---
+
+<header class="sticky top-0 z-40 border-b border-ink-800/10 bg-ivory-50/95 backdrop-blur">
+  <nav class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3" aria-label="Primary">
+    <a href="/" class="flex items-center gap-2.5 text-ink-900" aria-label={`${BRAND.name} home`}>
+      <ChessMark class="h-9 w-9 text-gold-600" />
+      <span class="font-display text-lg font-bold leading-none tracking-tight">
+        Checkmate<span class="text-gold-600"> Real Estate</span>
+      </span>
+    </a>
+
+    <!-- CSS-only mobile toggle (zero JS) -->
+    <input type="checkbox" id="nav-toggle" class="peer hidden" aria-hidden="true" />
+    <label
+      for="nav-toggle"
+      class="cursor-pointer rounded p-2 text-ink-800 md:hidden"
+      aria-label="Toggle navigation menu"
+    >
+      <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </label>
+
+    <ul
+      class="absolute left-0 right-0 top-full hidden flex-col gap-1 border-b border-ink-800/10 bg-ivory-50 px-4 pb-4 shadow-lg peer-checked:flex md:static md:flex md:flex-row md:items-center md:gap-1 md:border-0 md:bg-transparent md:p-0 md:shadow-none"
+    >
+      {NAV.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            aria-current={isActive(item.href) ? 'page' : undefined}
+            class:list={[
+              'block rounded px-3 py-2 text-sm font-medium transition-colors hover:text-gold-600',
+              isActive(item.href) ? 'text-gold-600' : 'text-ink-700',
+            ]}
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+      <li class="md:ml-2">
+        <a
+          href={NAP.phoneHref}
+          class="block rounded-md bg-ink-900 px-4 py-2 text-center text-sm font-semibold text-ivory-50 transition-colors hover:bg-gold-600"
+        >
+          Call {NAP.phone}
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
