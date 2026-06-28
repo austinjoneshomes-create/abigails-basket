@@ -1,9 +1,10 @@
 // ============================================================
-//  Abigail's Organizer — LARGE TUBE TRAY
-//  For Boiron-style homeopathic tubes
+//  Cindi's Homeopathic Tube Organizer
+//  Stackable tray for Boiron-style tubes
 // ============================================================
-//  5 slots, roughly square footprint
-//  Trays stack on each other via step-and-rim system
+//  5 slots per tray · compact square footprint
+//  Trays stack on each other via step-and-rim system —
+//  print as many as you need, they all lock together
 //
 //  HOW TO PRINT:
 //    Open in OpenSCAD (free: openscad.org)
@@ -32,7 +33,7 @@ tray_l = WALL + TUBE_L + WALL;
 step   = WALL + FIT;
 x0     = WALL + TUBE_D / 2;       // centre of first slot
 
-echo(str("Large tray  W=", tray_w, " mm  L=", tray_l, " mm  H=", H+RIM_H, " mm"));
+echo(str("Cindi's tray  W=", tray_w, " mm  L=", tray_l, " mm  H=", H+RIM_H, " mm"));
 
 // ── Module ───────────────────────────────────────────────────
 module tray() {
