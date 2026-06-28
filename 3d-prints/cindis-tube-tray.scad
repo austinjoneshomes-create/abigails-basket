@@ -20,9 +20,12 @@ N_SLOTS = 5;     // number of slots
 // ── Construction ─────────────────────────────────────────────
 WALL  = 3.0;   // wall & rim thickness [mm]
 GAP   = 2.5;   // gap between adjacent slots [mm]
-H     = 13.0;  // tray body height — must exceed TUBE_D/2 = 8.25 mm
+H     = 15.0;  // tray body height [mm]
 RIM_H = 3.5;   // stacking rim height [mm]
 FIT   = 0.4;   // fit clearance per side for stacking [mm]
+SNAP  = 3.5;   // how far cylinder centre sits BELOW tray surface [mm]
+               // creates a narrower opening so tubes snap in and stay put
+               // opening width = 2*sqrt(r²-SNAP²) = ~14.6 mm vs tube 16.5 mm
 $fn   = 48;
 
 // ── Derived ──────────────────────────────────────────────────
@@ -53,14 +56,16 @@ module tray() {
                 translate([0, tray_l-WALL,0]) cube([tray_w, WALL, RIM_H]);
             }
         }
-        // Tube cradles — half-cylinder channels along Y axis
-        // Cylinder centred at Z=H so cut depth = tube radius
+        // Tube cradles — snap-in channels along Y axis.
+        // Cylinder centre sits SNAP mm below the tray surface so the
+        // opening is narrower than the tube: tubes press in and won't
+        // fall out even if the tray is turned upside down.
         for (i = [0 : N_SLOTS-1]) {
             cx = x0 + i * pitch;
-            translate([cx, WALL-0.1, H])
+            translate([cx, WALL-0.1, H - SNAP])
                 rotate([-90,0,0]) cylinder(d=TUBE_D, h=TUBE_L+0.2);
             // Finger-lift notch at cap end
-            translate([cx, WALL+TUBE_L, H])
+            translate([cx, WALL+TUBE_L, H - SNAP])
                 scale([1, 0.65, 1]) sphere(d=TUBE_D*0.9);
         }
     }
