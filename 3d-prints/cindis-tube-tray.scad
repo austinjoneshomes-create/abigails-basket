@@ -1,79 +1,66 @@
 // ============================================================
 //  Cindi's Homeopathic Tube Organizer
-//  Stackable tray for Boiron-style tubes
+//  Flat-base groove tray — tubes rest in valleys between ridges
 // ============================================================
-//  5 slots per tray · compact square footprint
-//  Trays stack on each other via step-and-rim system —
-//  print as many as you need, they all lock together
+//  Open top · no walls · no cover
+//  5 grooves keep tubes from rolling
+//  Stack multiple trays in a drawer
 //
 //  HOW TO PRINT:
 //    Open in OpenSCAD (free: openscad.org)
-//    Press F6 to render → File → Export → Export as STL
-//    Slicer: 15-20% infill, 2-3 walls, flat on bed, no supports
+//    Press F6 → File → Export → Export as STL
+//    Slicer: 20% infill, 2-3 walls, flat on bed, no supports
 // ============================================================
 
 // ── Tube size ────────────────────────────────────────────────
-TUBE_D  = 16.5;  // outer diameter + ~1.5 mm clearance [mm]
-TUBE_L  = 70.0;  // length + ~3 mm clearance [mm]  (actual ~67 mm)
-N_SLOTS = 5;     // number of slots
+TUBE_D  = 16.5;   // tube outer diameter + ~1 mm clearance
+TUBE_L  = 70.0;   // tube length + ~3 mm clearance
+N_SLOTS = 5;      // number of tube slots
 
-// ── Construction ─────────────────────────────────────────────
-WALL  = 3.0;   // wall & rim thickness [mm]
-GAP   = 2.5;   // gap between adjacent slots [mm]
-H     = 15.0;  // tray body height [mm]
-RIM_H = 3.5;   // stacking rim height [mm]
-FIT   = 0.4;   // fit clearance per side for stacking [mm]
-SNAP  = 3.5;   // how far cylinder centre sits BELOW tray surface [mm]
-               // creates a narrower opening so tubes snap in and stay put
-               // opening width = 2*sqrt(r²-SNAP²) = ~14.6 mm vs tube 16.5 mm
-$fn   = 48;
+// ── Tray geometry ────────────────────────────────────────────
+BASE_T  = 5.0;    // base plate thickness [mm]
+R_RIDGE = 5.0;    // ridge radius — ridge height above base = R_RIDGE
+MARGIN  = 4.0;    // extra border around outermost ridges
+CORNER_R = 3.0;   // rounded corner radius
 
 // ── Derived ──────────────────────────────────────────────────
-pitch  = TUBE_D + GAP;
-span   = N_SLOTS * pitch - GAP;
-tray_w = WALL + span + WALL;
-tray_l = WALL + TUBE_L + WALL;
-step   = WALL + FIT;
-x0     = WALL + TUBE_D / 2;       // centre of first slot
+VALLEY  = TUBE_D + 1.0;        // groove width (tube + a little breathing room)
+PITCH   = VALLEY + 2*R_RIDGE;  // centre-to-centre ridge spacing
+N_RIDGES = N_SLOTS + 1;        // one ridge on each side of every tube
 
-echo(str("Cindi's tray  W=", tray_w, " mm  L=", tray_l, " mm  H=", H+RIM_H, " mm"));
+x0     = MARGIN + R_RIDGE;     // first ridge centre X
+tray_w = 2*MARGIN + 2*R_RIDGE + N_SLOTS * PITCH;
+tray_l = 2*MARGIN + TUBE_L;
 
-// ── Module ───────────────────────────────────────────────────
+$fn = 40;
+
+echo(str("Cindi's tray  W=", tray_w, " mm  L=", tray_l, " mm  H=", BASE_T+R_RIDGE, " mm"));
+
+// ── Rounded rectangular base plate ───────────────────────────
+module base_plate() {
+    r = CORNER_R;
+    hull() {
+        translate([r,        r,        0]) cylinder(r=r, h=BASE_T);
+        translate([tray_w-r, r,        0]) cylinder(r=r, h=BASE_T);
+        translate([r,        tray_l-r, 0]) cylinder(r=r, h=BASE_T);
+        translate([tray_w-r, tray_l-r, 0]) cylinder(r=r, h=BASE_T);
+    }
+}
+
+// ── Full tray ─────────────────────────────────────────────────
 module tray() {
-    difference() {
-        union() {
-            // Narrower bottom step (nests into rim of tray below)
-            translate([step, step, 0])
-                cube([tray_w-2*step, tray_l-2*step, RIM_H+0.1]);
-            // Full-width body
-            translate([0, 0, RIM_H])
-                cube([tray_w, tray_l, H-RIM_H]);
-            // Top rim (catches tray above)
-            translate([0, 0, H]) {
-                cube([WALL, tray_l, RIM_H]);
-                translate([tray_w-WALL,0,0]) cube([WALL, tray_l, RIM_H]);
-                cube([tray_w, WALL, RIM_H]);
-                translate([0, tray_l-WALL,0]) cube([tray_w, WALL, RIM_H]);
-            }
-        }
-        // Tube cradles — snap-in channels along Y axis.
-        // Cylinder centre sits SNAP mm below the tray surface so the
-        // opening is narrower than the tube: tubes press in and won't
-        // fall out even if the tray is turned upside down.
-        for (i = [0 : N_SLOTS-1]) {
-            cx = x0 + i * pitch;
-            translate([cx, WALL-0.1, H - SNAP])
-                rotate([-90,0,0]) cylinder(d=TUBE_D, h=TUBE_L+0.2);
-            // Finger-lift notch at cap end
-            translate([cx, WALL+TUBE_L, H - SNAP])
-                scale([1, 0.65, 1]) sphere(d=TUBE_D*0.9);
+    union() {
+        base_plate();
+
+        // Ridges — full cylinders centred at Z=BASE_T (so the
+        // lower half is inside the base, upper half is the ridge)
+        for (i = [0 : N_RIDGES - 1]) {
+            cx = x0 + i * PITCH;
+            translate([cx, MARGIN, BASE_T])
+                rotate([-90, 0, 0])
+                    cylinder(r=R_RIDGE, h=TUBE_L, $fn=36);
         }
     }
 }
 
 tray();
-
-// Uncomment to preview a stack:
-// tray();
-// translate([0,0,H+RIM_H]) tray();
-// translate([0,0,2*(H+RIM_H)]) tray();
