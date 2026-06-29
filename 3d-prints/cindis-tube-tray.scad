@@ -1,64 +1,62 @@
 // ============================================================
 //  Cindi's Homeopathic Tube Organizer
-//  Flat-base groove tray — tubes rest in valleys between ridges
+//  Snap-in channel tray — tubes press into channels and lock
 // ============================================================
-//  Open top · no walls · no cover
-//  5 grooves keep tubes from rolling
-//  Stack multiple trays in a drawer
+//  Open top · solid block · channels cut into top surface
+//  Each channel is slightly narrower than the tube so it snaps
+//  in and stays put — won't roll out even upside down
 //
 //  HOW TO PRINT:
 //    Open in OpenSCAD (free: openscad.org)
 //    Press F6 → File → Export → Export as STL
-//    Slicer: 20% infill, 2-3 walls, flat on bed, no supports
+//    Slicer: 20% infill, 3 walls, flat on bed, no supports
 // ============================================================
 
 // ── Tube size ────────────────────────────────────────────────
-TUBE_D  = 16.5;   // tube outer diameter + ~1 mm clearance
+TUBE_D  = 16.5;   // tube outer diameter (mm)
 TUBE_L  = 70.0;   // tube length + ~3 mm clearance
 N_SLOTS = 5;      // number of tube slots
 
+// ── Snap geometry ────────────────────────────────────────────
+SNAP    = 2.5;    // how far below top surface the channel centre sits
+                  // opening = 2*sqrt(r^2 - SNAP^2) = ~15.7 mm < 16.5 mm tube
+                  // → tube must snap past the lip; stays locked when in
+
 // ── Tray geometry ────────────────────────────────────────────
-BASE_T  = 5.0;    // base plate thickness [mm]
-R_RIDGE = 8.0;    // ridge radius — nearly matches tube radius so tubes nest snugly
-VALLEY  = TUBE_D; // groove width = tube diameter (snug fit)
-MARGIN  = 3.0;    // extra border around outermost ridges
-CORNER_R = 3.0;   // rounded corner radius
+WALL    = 3.0;    // wall thickness between adjacent channels [mm]
+MARGIN  = 4.0;    // border around outermost channels [mm]
+CORNER_R = 3.0;   // rounded corner radius [mm]
 
 // ── Derived ──────────────────────────────────────────────────
-PITCH    = VALLEY + 2*R_RIDGE;  // centre-to-centre ridge spacing
-N_RIDGES = N_SLOTS + 1;         // one ridge on each side of every tube
-
-x0     = MARGIN + R_RIDGE;      // first ridge centre X
-tray_w = 2*MARGIN + 2*R_RIDGE + N_SLOTS * PITCH;
-tray_l = 2*MARGIN + TUBE_L;
+r       = TUBE_D / 2;
+PITCH   = TUBE_D + WALL;              // centre-to-centre channel spacing
+block_h = r + SNAP + 2.0;            // 2 mm floor below deepest point
+x0      = MARGIN + r;                 // first channel centre X
+tray_w  = 2*MARGIN + 2*r + (N_SLOTS - 1)*PITCH;
+tray_l  = 2*MARGIN + TUBE_L;
 
 $fn = 40;
 
-echo(str("Cindi's tray  W=", tray_w, " mm  L=", tray_l, " mm  H=", BASE_T+R_RIDGE, " mm"));
+echo(str("Snap tray  W=", tray_w, " mm  L=", tray_l, " mm  H=", block_h, " mm"));
+echo(str("Channel opening = ", 2*sqrt(r*r - SNAP*SNAP), " mm  vs tube ", TUBE_D, " mm"));
 
-// ── Rounded rectangular base plate ───────────────────────────
-module base_plate() {
-    r = CORNER_R;
-    hull() {
-        translate([r,        r,        0]) cylinder(r=r, h=BASE_T);
-        translate([tray_w-r, r,        0]) cylinder(r=r, h=BASE_T);
-        translate([r,        tray_l-r, 0]) cylinder(r=r, h=BASE_T);
-        translate([tray_w-r, tray_l-r, 0]) cylinder(r=r, h=BASE_T);
-    }
-}
-
-// ── Full tray ─────────────────────────────────────────────────
+// ── Tray ─────────────────────────────────────────────────────
 module tray() {
-    union() {
-        base_plate();
+    difference() {
+        // Rounded-corner solid block
+        hull() {
+            translate([CORNER_R,          CORNER_R,          0]) cylinder(r=CORNER_R, h=block_h);
+            translate([tray_w - CORNER_R, CORNER_R,          0]) cylinder(r=CORNER_R, h=block_h);
+            translate([CORNER_R,          tray_l - CORNER_R, 0]) cylinder(r=CORNER_R, h=block_h);
+            translate([tray_w - CORNER_R, tray_l - CORNER_R, 0]) cylinder(r=CORNER_R, h=block_h);
+        }
 
-        // Ridges — full cylinders centred at Z=BASE_T (so the
-        // lower half is inside the base, upper half is the ridge)
-        for (i = [0 : N_RIDGES - 1]) {
+        // Snap-in channel cuts — cylinder centres sit SNAP mm below top
+        for (i = [0 : N_SLOTS - 1]) {
             cx = x0 + i * PITCH;
-            translate([cx, MARGIN, BASE_T])
+            translate([cx, -1, block_h - SNAP])
                 rotate([-90, 0, 0])
-                    cylinder(r=R_RIDGE, h=TUBE_L, $fn=36);
+                    cylinder(r=r, h=tray_l + 2, $fn=48);
         }
     }
 }
