@@ -19,16 +19,16 @@ N_SLOTS = 5;      // number of tube slots
 
 // ── Tray geometry ────────────────────────────────────────────
 BASE_T  = 5.0;    // base plate thickness [mm]
-R_RIDGE = 5.0;    // ridge radius — ridge height above base = R_RIDGE
-MARGIN  = 4.0;    // extra border around outermost ridges
+R_RIDGE = 8.0;    // ridge radius — nearly matches tube radius so tubes nest snugly
+VALLEY  = TUBE_D; // groove width = tube diameter (snug fit)
+MARGIN  = 3.0;    // extra border around outermost ridges
 CORNER_R = 3.0;   // rounded corner radius
 
 // ── Derived ──────────────────────────────────────────────────
-VALLEY  = TUBE_D + 1.0;        // groove width (tube + a little breathing room)
-PITCH   = VALLEY + 2*R_RIDGE;  // centre-to-centre ridge spacing
-N_RIDGES = N_SLOTS + 1;        // one ridge on each side of every tube
+PITCH    = VALLEY + 2*R_RIDGE;  // centre-to-centre ridge spacing
+N_RIDGES = N_SLOTS + 1;         // one ridge on each side of every tube
 
-x0     = MARGIN + R_RIDGE;     // first ridge centre X
+x0     = MARGIN + R_RIDGE;      // first ridge centre X
 tray_w = 2*MARGIN + 2*R_RIDGE + N_SLOTS * PITCH;
 tray_l = 2*MARGIN + TUBE_L;
 
