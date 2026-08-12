@@ -1,19 +1,15 @@
 ---
 import { NAV, BRAND, NAP } from '../config/site';
-import ChessMark from './ChessMark.astro';
 
 const current = Astro.url.pathname;
 const isActive = (href: string) =>
   href === '/' ? current === '/' : current.startsWith(href);
 ---
 
-<header class="sticky top-0 z-40 border-b border-ink-800/10 bg-ivory-50/95 backdrop-blur">
+<header class="sticky top-0 z-40 border-b border-line bg-ivory-50/95 backdrop-blur">
   <nav class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3" aria-label="Primary">
-    <a href="/" class="flex items-center gap-2.5 text-ink-900" aria-label={`${BRAND.name} home`}>
-      <ChessMark class="h-9 w-9 text-gold-600" />
-      <span class="font-display text-lg font-bold leading-none tracking-tight">
-        Checkmate<span class="text-gold-600"> Real Estate</span>
-      </span>
+    <a href="/" class="flex items-center" aria-label={`${BRAND.name} home`}>
+      <img src="/brand/checkmate-navy.png" alt={`${BRAND.name}`} class="h-8 w-auto md:h-9" width="200" height="45" />
     </a>
 
     <!-- CSS-only mobile toggle (zero JS) -->

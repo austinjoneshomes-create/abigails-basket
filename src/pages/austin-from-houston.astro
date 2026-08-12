@@ -2,7 +2,6 @@
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import CtaBand from '../components/CtaBand.astro';
-import ChessMark from '../components/ChessMark.astro';
 import { NAP, SOCIAL } from '../config/site';
 import { breadcrumbSchema, personSchema } from '../config/schema';
 
@@ -84,10 +83,16 @@ const faqSchema = {
       </div>
 
       <aside class="space-y-6">
-        <div class="rounded-2xl bg-ink-900 p-7 text-ivory-50">
-          <ChessMark class="h-10 w-10 text-gold-400" />
-          <p class="mt-4 font-display text-xl font-bold">Austin Jones</p>
-          <p class="text-sm text-gold-300">Austin from Houston</p>
+        <img
+          src="/team/austin.jpg"
+          alt="Austin Jones — Austin from Houston, Houston &amp; Pasadena real estate agent"
+          width="760"
+          height="900"
+          class="w-full border border-line object-cover"
+        />
+        <div class="bg-ink-900 p-7 text-ivory-50">
+          <p class="font-display text-xl font-medium">Austin Jones</p>
+          <p class="text-xs font-medium uppercase tracking-[0.18em] text-gold-300">Austin from Houston</p>
           <p class="mt-4 text-sm text-ivory-200">Founder, Checkmate Real Estate · Brokered by Keller Williams · Host of REI 101.</p>
           <div class="mt-6 space-y-2 text-sm">
             <a class="block rounded-md bg-gold-500 px-4 py-2.5 text-center font-semibold text-ink-900 hover:bg-gold-400" href="/contact/">Work with Austin</a>

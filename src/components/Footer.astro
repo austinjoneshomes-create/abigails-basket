@@ -1,15 +1,13 @@
 ---
 import { BRAND, NAP, NAV, SOCIAL, AREAS_SERVED } from '../config/site';
-import ChessMark from './ChessMark.astro';
 const year = 2026;
 ---
-<footer class="mt-20 border-t border-ink-800 bg-ink-900 text-ivory-100">
-  <div class="mx-auto grid max-w-6xl gap-10 px-4 py-12 md:grid-cols-4">
+<footer class="mt-20 border-t-2 border-gold-500 bg-ink-900 text-ivory-100">
+  <div class="mx-auto grid max-w-6xl gap-10 px-4 py-14 md:grid-cols-4">
     <!-- Brand + NAP (machine + human readable) -->
     <div class="md:col-span-2">
-      <a href="/" class="mb-3 flex items-center gap-2.5 text-ivory-50" aria-label={`${BRAND.name} home`}>
-        <ChessMark class="h-8 w-8 text-gold-400" />
-        <span class="font-display text-lg font-bold">Checkmate Real Estate</span>
+      <a href="/" class="mb-4 inline-flex items-center" aria-label={`${BRAND.name} home`}>
+        <img src="/brand/checkmate-cream.png" alt={BRAND.name} class="h-9 w-auto" width="200" height="45" />
       </a>
       <p class="mb-4 max-w-sm text-sm text-ivory-200">
         Houston &amp; Pasadena, TX real estate — residential, multifamily, retail, industrial,
@@ -23,6 +21,16 @@ const year = 2026;
         <a class="mt-1 block hover:text-gold-300" href={NAP.phoneHref}>{NAP.phone}</a>
         <a class="block hover:text-gold-300" href={`mailto:${NAP.email}`}>{NAP.email}</a>
       </address>
+
+      <!-- Brokerage compliance: KW mark in original colors, on a white chip. -->
+      <div class="mt-6 flex items-center gap-3">
+        <span class="inline-flex rounded-[2px] bg-white px-3 py-2">
+          <img src="/brand/kw-houston-central.png" alt="Keller Williams Houston Central" class="h-8 w-auto" width="120" height="32" />
+        </span>
+        <span class="text-xs leading-tight text-ivory-300">
+          Brokered by<br />{BRAND.brokerageOffice}
+        </span>
+      </div>
     </div>
 
     <!-- Explore -->

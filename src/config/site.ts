@@ -77,6 +77,7 @@ export const TEAM = [
     role: 'Owner / Operator · "Austin from Houston"',
     bio: 'Founder of Checkmate Real Estate and host of the REI 101 podcast. An investor-operator who works the full board — residential to industrial — across Houston and Pasadena.',
     initials: 'AJ',
+    photo: '/team/austin.jpg',
   },
   {
     name: 'Ona',
@@ -84,6 +85,7 @@ export const TEAM = [
     role: 'Real Estate Agent',
     bio: 'Guides Houston and Pasadena buyers and sellers through every move with patience, local knowledge, and sharp follow-through.',
     initials: 'O',
+    photo: '/team/ona.jpg',
   },
   {
     name: 'Sunnie',

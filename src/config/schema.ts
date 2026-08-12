@@ -35,7 +35,7 @@ export function realEstateAgentSchema() {
     telephone: NAP.phone,
     email: NAP.email,
     image: `${SITE_URL}/og-default.png`,
-    logo: `${SITE_URL}/logo.png`,
+    logo: `${SITE_URL}/brand/checkmate-navy.png`,
     priceRange: '$$',
     address: postalAddress,
     geo: {
@@ -70,7 +70,7 @@ export function personSchema() {
     alternateName: BRAND.ownerNickname,
     jobTitle: 'Real Estate Agent & Investor',
     description: `${BRAND.owner}, known as "${BRAND.ownerNickname}," is the owner/operator of ${BRAND.name}, serving Houston and Pasadena, TX across residential, multifamily, retail, industrial, and land.`,
-    image: `${SITE_URL}/og-default.png`,
+    image: `${SITE_URL}/team/austin.jpg`,
     url: `${SITE_URL}/austin-from-houston/`,
     worksFor: { '@id': ORG_ID },
     homeLocation: {
