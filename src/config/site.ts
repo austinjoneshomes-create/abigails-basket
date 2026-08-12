@@ -53,10 +53,9 @@ export const AREAS_SERVED = [
 
 export const SOCIAL = {
   facebook: 'https://www.facebook.com/checkmaterealestategroup',
-  // TODO(owner): confirm real Instagram / YouTube / LinkedIn handles
-  instagram: 'https://www.instagram.com/austinfromhouston',
-  youtube: 'https://www.youtube.com/@rei101',
-  linkedin: 'https://www.linkedin.com/in/austinfromhouston',
+  instagram: 'https://www.instagram.com/austinfromhoustontx',
+  // Austin's YouTube channel — home of the REI 101 podcast.
+  youtube: 'https://www.youtube.com/@austinfromhouston12',
 } as const;
 
 export const NAV = [
@@ -109,6 +108,13 @@ export const TEAM = [
     initials: 'M',
   },
 ] as const;
+
+// Featured REI 101 episodes. Add the 11-character YouTube video ID from each
+// watch URL (youtube.com/watch?v=XXXXXXXXXXX) and a title — they render as
+// embedded players on /rei-101/. Leave empty to show just the channel CTA.
+export const REI101_EPISODES: { id: string; title: string }[] = [
+  // { id: 'dQw4w9WgXcQ', title: 'How to analyze your first Houston rental' },
+];
 
 export const ASSET_TYPES = [
   {
