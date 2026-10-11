@@ -7,7 +7,7 @@ import { breadcrumbSchema, personSchema } from '../config/schema';
 
 const title = 'Austin from Houston | Austin Jones, Houston Real Estate Agent & Investor';
 const description =
-  'Austin from Houston — Austin Jones is a Houston and Pasadena, TX real estate agent, investor, and host of the REI 101 podcast. Founder of Checkmate Real Estate, brokered by Keller Williams.';
+  'Austin from Houston — Austin Jones is a Houston and Galveston, TX real estate agent, investor, and host of the REI 101 podcast. Founder of Checkmate Real Estate, brokered by Keller Williams.';
 const crumbs = breadcrumbSchema([
   { name: 'Home', url: '/' },
   { name: 'Austin from Houston', url: '/austin-from-houston/' },
@@ -18,11 +18,11 @@ const person = { '@context': 'https://schema.org', ...personSchema() };
 const faqs = [
   {
     q: 'Who is Austin from Houston?',
-    a: 'Austin from Houston is Austin Jones, a Houston- and Pasadena-based real estate agent and investor, and the founder of Checkmate Real Estate. He is brokered by Keller Williams and hosts the REI 101 real estate podcast.',
+    a: 'Austin from Houston is Austin Jones, a Houston- and Galveston-based real estate agent and investor, and the founder of Checkmate Real Estate. He is brokered by Keller Williams and hosts the REI 101 real estate podcast.',
   },
   {
     q: 'What areas does Austin from Houston serve?',
-    a: 'Austin serves the greater Houston metro, including Pasadena, Deer Park, La Porte, Friendswood, Pearland, League City, Baytown, and all of Harris County, TX.',
+    a: 'Austin serves the greater Houston metro, including Galveston, Deer Park, La Porte, Friendswood, Pearland, League City, Baytown, and all of Harris County, TX.',
   },
   {
     q: 'What types of real estate does Austin handle?',
@@ -43,7 +43,7 @@ const faqSchema = {
   <PageHero
     eyebrow="The Person Behind the Brand"
     title="Austin from Houston"
-    subtitle="Real estate agent. Investor. Operator. Houston native helping his neighbors win across Houston and Pasadena, TX."
+    subtitle="Real estate agent. Investor. Operator. Houston native helping his neighbors win across Houston and Galveston, TX."
   />
 
   <section class="mx-auto max-w-6xl px-4 py-16 md:py-20">
@@ -65,7 +65,7 @@ const faqSchema = {
 
         <h2 class="font-display text-2xl font-bold text-ink-900">What Austin does</h2>
         <ul class="space-y-3 text-base">
-          <li class="flex gap-3"><span class="text-gold-600 text-xl">♚</span><span><strong>Represents buyers &amp; sellers</strong> across residential and commercial real estate in Houston and Pasadena.</span></li>
+          <li class="flex gap-3"><span class="text-gold-600 text-xl">♚</span><span><strong>Represents buyers &amp; sellers</strong> across residential and commercial real estate in Houston and Galveston.</span></li>
           <li class="flex gap-3"><span class="text-gold-600 text-xl">♛</span><span><strong>Invests and advises</strong> on multifamily, retail, industrial, and land throughout the Gulf Coast.</span></li>
           <li class="flex gap-3"><span class="text-gold-600 text-xl">♜</span><span><strong>Hosts <a class="font-semibold text-gold-600 hover:underline" href="/rei-101/">REI 101</a></strong>, teaching real estate investing in plain English.</span></li>
           <li class="flex gap-3"><span class="text-gold-600 text-xl">♞</span><span><strong>Leads Checkmate Real Estate</strong>, brokered by Keller Williams.</span></li>
@@ -85,7 +85,7 @@ const faqSchema = {
       <aside class="space-y-6">
         <img
           src="/team/austin.jpg"
-          alt="Austin Jones — Austin from Houston, Houston &amp; Pasadena real estate agent"
+          alt="Austin Jones — Austin from Houston, Houston &amp; Galveston real estate agent"
           width="760"
           height="900"
           class="w-full border border-line object-cover"
@@ -108,5 +108,5 @@ const faqSchema = {
     </div>
   </section>
 
-  <CtaBand heading="Make your next move with Austin" text="Houston, Pasadena, and the whole Gulf Coast. Let’s talk about your goals." />
+  <CtaBand heading="Make your next move with Austin" text="Houston, Galveston, and the whole Gulf Coast. Let’s talk about your goals." />
 </Base>

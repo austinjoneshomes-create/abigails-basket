@@ -41,7 +41,7 @@ export const NAP = {
 
 export const AREAS_SERVED = [
   'Houston',
-  'Pasadena',
+  'Galveston',
   'Deer Park',
   'La Porte',
   'Friendswood',
@@ -74,7 +74,7 @@ export const TEAM = [
     name: 'Austin Jones',
     slug: 'austin-jones',
     role: 'Owner / Operator · "Austin from Houston"',
-    bio: 'Founder of Checkmate Real Estate and host of the REI 101 podcast. An investor-operator who works the full board — residential to industrial — across Houston and Pasadena.',
+    bio: 'Founder of Checkmate Real Estate and host of the REI 101 podcast. An investor-operator who works the full board — residential to industrial — across Houston and Galveston.',
     initials: 'AJ',
     photo: '/team/austin.jpg',
   },
@@ -82,7 +82,7 @@ export const TEAM = [
     name: 'Ona',
     slug: 'ona',
     role: 'Real Estate Agent',
-    bio: 'Guides Houston and Pasadena buyers and sellers through every move with patience, local knowledge, and sharp follow-through.',
+    bio: 'Guides Houston and Galveston buyers and sellers through every move with patience, local knowledge, and sharp follow-through.',
     initials: 'O',
     photo: '/team/ona.jpg',
   },
@@ -122,7 +122,7 @@ export const ASSET_TYPES = [
     name: 'Residential',
     short: 'Homes, condos & townhomes',
     blurb:
-      'Buying or selling a home in Houston or Pasadena? We move decisively to protect your position and your equity.',
+      'Buying or selling a home in Houston or Galveston? We move decisively to protect your position and your equity.',
   },
   {
     slug: 'multifamily',
@@ -136,7 +136,7 @@ export const ASSET_TYPES = [
     name: 'Retail',
     short: 'Strip centers & storefronts',
     blurb:
-      'Retail strip centers, pads, and single-tenant net-lease investments along Houston and Pasadena corridors.',
+      'Retail strip centers, pads, and single-tenant net-lease investments along Houston and Galveston corridors.',
   },
   {
     slug: 'industrial',
