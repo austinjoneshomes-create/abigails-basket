@@ -17,36 +17,36 @@ const DETAIL: Record<string, {
   points: { t: string; d: string }[]; audience: string;
 }> = {
   residential: {
-    h1: 'Residential Real Estate in Houston & Pasadena, TX',
-    metaTitle: 'Houston & Pasadena Residential Real Estate Agent | Checkmate Real Estate',
-    metaDesc: 'Buy or sell a home in Houston and Pasadena, TX with Checkmate Real Estate. Investor-led representation for homeowners and first-time buyers across Harris County.',
-    intro: 'Buying or selling a home is the biggest move most people make. We bring an investor’s eye and a neighbor’s honesty to every Houston and Pasadena residential transaction.',
+    h1: 'Residential Real Estate in Houston & Galveston, TX',
+    metaTitle: 'Houston & Galveston Residential Real Estate Agent | Checkmate Real Estate',
+    metaDesc: 'Buy or sell a home in Houston and Galveston, TX with Checkmate Real Estate. Investor-led representation for homeowners and first-time buyers across Harris County.',
+    intro: 'Buying or selling a home is the biggest move most people make. We bring an investor’s eye and a neighbor’s honesty to every Houston and Galveston residential transaction.',
     points: [
       { t: 'Buyers', d: 'First-time buyers to move-up families — we find the right home in the right Houston-area neighborhood and negotiate hard on price and terms.' },
-      { t: 'Sellers', d: 'Data-driven pricing, sharp staging guidance, and marketing that gets your Pasadena or Houston home in front of the right buyers fast.' },
+      { t: 'Sellers', d: 'Data-driven pricing, sharp staging guidance, and marketing that gets your Galveston or Houston home in front of the right buyers fast.' },
       { t: 'Relocation', d: 'Moving to the Houston metro? We know the commutes, schools, and submarkets from the Heights to Deer Park.' },
     ],
-    audience: 'Homeowners, first-time buyers, and families across Houston, Pasadena, and Harris County.',
+    audience: 'Homeowners, first-time buyers, and families across Houston, Galveston, and Harris County.',
   },
   multifamily: {
     h1: 'Multifamily Real Estate in the Houston Metro',
     metaTitle: 'Houston Multifamily Real Estate & Investment | Checkmate Real Estate',
-    metaDesc: 'Multifamily real estate across Houston and Pasadena, TX — duplexes, fourplexes, and apartment communities underwritten by an investor-led team.',
+    metaDesc: 'Multifamily real estate across Houston and Galveston, TX — duplexes, fourplexes, and apartment communities underwritten by an investor-led team.',
     intro: 'From your first duplex to a stabilized apartment community, we underwrite Houston multifamily deals like the investors we are — because we are.',
     points: [
       { t: 'Acquisitions', d: 'Off-market sourcing, rent-roll analysis, and disciplined underwriting across the Houston metro.' },
       { t: 'Dispositions', d: 'Position and market your multifamily asset to maximize value and minimize days on market.' },
       { t: 'Investor strategy', d: 'Cash flow, value-add, and 1031 exchange planning tailored to your goals.' },
     ],
-    audience: 'New and experienced investors building rental and apartment portfolios in Houston and Pasadena.',
+    audience: 'New and experienced investors building rental and apartment portfolios in Houston and Galveston.',
   },
   retail: {
-    h1: 'Retail Real Estate in Houston & Pasadena, TX',
+    h1: 'Retail Real Estate in Houston & Galveston, TX',
     metaTitle: 'Houston Retail Real Estate — Strip Centers & Storefronts | Checkmate Real Estate',
-    metaDesc: 'Retail real estate along Houston and Pasadena, TX corridors — strip centers, pad sites, and single-tenant net-lease investments.',
+    metaDesc: 'Retail real estate along Houston and Galveston, TX corridors — strip centers, pad sites, and single-tenant net-lease investments.',
     intro: 'Retail is about location, traffic, and tenant quality. We help investors and business owners win on all three across the Houston market.',
     points: [
-      { t: 'Strip centers', d: 'Multi-tenant retail along high-traffic Houston and Pasadena corridors.' },
+      { t: 'Strip centers', d: 'Multi-tenant retail along high-traffic Houston and Galveston corridors.' },
       { t: 'Net lease', d: 'Single-tenant, net-lease investments for stable, passive income.' },
       { t: 'Pad sites & leasing', d: 'Pad development opportunities and tenant/landlord representation.' },
     ],
@@ -55,22 +55,22 @@ const DETAIL: Record<string, {
   industrial: {
     h1: 'Industrial Real Estate on the Houston Ship Channel & Gulf Coast',
     metaTitle: 'Houston Industrial Real Estate — Warehouse & Flex | Checkmate Real Estate',
-    metaDesc: 'Industrial real estate serving the Port of Houston, Ship Channel, and Gulf Coast — warehouse, flex, and distribution space in Houston and Pasadena, TX.',
+    metaDesc: 'Industrial real estate serving the Port of Houston, Ship Channel, and Gulf Coast — warehouse, flex, and distribution space in Houston and Galveston, TX.',
     intro: 'Pasadena and the Houston Ship Channel are one of the most active industrial markets in the country. We help you stake your claim.',
     points: [
       { t: 'Warehouse & distribution', d: 'Space serving the Port of Houston, Ship Channel, and Gulf Coast logistics.' },
       { t: 'Flex space', d: 'Office/warehouse flex for growing operators across the Houston metro.' },
       { t: 'Owner-user & investment', d: 'Buy to occupy or buy to lease — we underwrite both sides.' },
     ],
-    audience: 'Operators, logistics companies, and industrial investors in Pasadena and Houston.',
+    audience: 'Operators, logistics companies, and industrial investors in Galveston and Houston.',
   },
   land: {
     h1: 'Land for Sale & Development in the Houston Region',
     metaTitle: 'Houston Land for Sale & Development | Checkmate Real Estate',
-    metaDesc: 'Land in Houston and Pasadena, TX — infill lots, raw acreage, and development sites across Harris County and the greater Houston region.',
+    metaDesc: 'Land in Houston and Galveston, TX — infill lots, raw acreage, and development sites across Harris County and the greater Houston region.',
     intro: 'Whether you’re building one home or planning a subdivision, the right piece of land is the opening move. We help you find it and run the numbers.',
     points: [
-      { t: 'Infill lots', d: 'Buildable lots in established Houston and Pasadena neighborhoods.' },
+      { t: 'Infill lots', d: 'Buildable lots in established Houston and Galveston neighborhoods.' },
       { t: 'Acreage', d: 'Raw and improved acreage across Harris County and surrounding counties.' },
       { t: 'Development sites', d: 'Entitlement, feasibility, and disposition strategy for developers.' },
     ],
@@ -89,7 +89,7 @@ const serviceSchema = {
   '@type': 'Service',
   name: `${asset.name} Real Estate`,
   serviceType: `${asset.name} real estate`,
-  areaServed: 'Houston, Pasadena, TX',
+  areaServed: 'Houston, Galveston, TX',
   provider: { '@id': `${SITE_URL}/#realestateagent` },
   description: d.metaDesc,
 };
