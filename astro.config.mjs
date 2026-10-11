@@ -15,6 +15,8 @@ export default defineConfig({
       changefreq: 'weekly',
       priority: 0.7,
       lastmod: new Date(),
+      // Invite-only event page stays out of the sitemap.
+      filter: (page) => !page.includes('/space-city-exchange'),
     }),
   ],
   vite: {
